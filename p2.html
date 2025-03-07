@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+</head>
+<body>
+    <div id="output"></div>
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const output = document.getElementById('output');
+            const storedText = sessionStorage.getItem('p1_reason');
+            const storedImages = JSON.parse(sessionStorage.getItem('p1_images') || '[]');
+
+            output.textContent = storedText ? `You entered: ${storedText}` : 'No text found.';
+
+            storedImages.forEach((src) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.style.maxWidth = '100%';
+                img.style.height = 'auto';
+                output.appendChild(img);
+            });
+        });
+    </script>
+</body>
+</html>

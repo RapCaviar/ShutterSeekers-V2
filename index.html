@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Image Upload</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="main-text"> <h2>Upload image</h2> </div>
+    <div class="rect">
+        <button id="prevButton">Previous</button>
+        <div class="container">
+            <div class="drag-drop-area" id="dragDropArea">
+                <p>Drag & Drop your files here or click</p>
+                <input type="file" id="fileUpload" multiple>
+            </div>
+            <div id="output"></div>
+        </div>
+        <button id="nextButton">Next</button>
+        <div class="moreButton"> <button id="moreButton">Add more images</button></div>
+    </div>
+    <textarea id="fname" name="fname" placeholder="Enter your text here" maxlength="200"></textarea>
+    <button id="saveButton">Save and View</button>
+    
+    <!-- Hidden form to submit data -->
+    <form id="saveForm" action="test.html" method="GET" style="display: none;">
+        <input type="hidden" id="savedText" name="savedText">
+    </form>
+  
+    <script src="index.js"></script>
+</body>
+</html>

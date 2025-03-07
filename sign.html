@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Login Form HTML CSS | CodingNepal</title>
+  <link rel="stylesheet" href="style2.css" />
+  <!-- Font Awesome CDN link for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title"><span>Registration Form</span></div>
+    <form id="registrationForm">
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Enter your name" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-envelope"></i>
+        <input type="email" placeholder="Enter your email" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Create password" required />
+      </div>
+      <div class="row button">
+        <input type="submit" value="Register" />
+      </div>
+      <div class="signup-link">Already have an account? <a href="login.html">Login now</a></div>
+    </form>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('registrationForm');
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = {
+          name: form.querySelector('input[placeholder="Enter your name"]').value,
+          email: form.querySelector('input[placeholder="Enter your email"]').value,
+          password: form.querySelector('input[placeholder="Create password"]').value
+        };
+        
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        users.push(formData);
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        alert('Registration successful!');
+      });
+    });
+  </script>
+</body>
+</html>

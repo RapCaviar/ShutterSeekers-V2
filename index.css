@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.rect {
+    background-color: green;
+    width: 500px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px; /* Space below the green box */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.drag-drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column; /* Ensure content is stacked vertically */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 300px;
+    height: 400px;
+    position: relative;
+}
+
+.drag-drop-area p {
+    margin: 10px 0;
+}
+
+.drag-drop-area input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#prevButton, #nextButton {
+    width: 50px; /* Set the width of the buttons */
+    height: 250px; /* Make the buttons span the full height of the green box */
+    writing-mode: vertical-rl; /* Rotate text vertically */
+    text-orientation: mixed; /* Ensure the text is upright */
+    font-size: 16px; /* Adjust the font size */
+    background-color: #336343; /* Background color for the buttons */
+    border: 2px solid #000000; /* Border for the buttons */
+    color: #ffffff;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex;
+    display: none;
+    align-items: center; /* Center the text vertically */
+    justify-content: center; /* Center the text horizontally */
+    text-align: center; /* Center the text */
+    position: absolute;
+    margin-top: 225px;
+    top: 0;
+    bottom: 0;
+}
+
+#saveButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    background-color: #336343; /* Background color for the button */
+    border: 2px solid #000000; /* Border for the button */
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto; /* Center the button horizontally */
+}
+
+
+#prevButton {
+    left: 0; /* Position the Previous button to the left */
+}
+
+#nextButton {
+    right: 0; /* Position the Next button to the right */
+}
+
+#output {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#output div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#output img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+.cover-text {
+    margin-bottom: 10px; /* Add some space below the text */
+}
+
+#moreButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    background-color: #336343; /* Background color for the buttons */
+    border: 2px solid #000000; /* Border for the buttons */
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% + 230px); /* Adjust this value to position it below the upload box */
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+
+#fname {
+    width: 400px; /* Make the textarea wider */
+    height: 200px; /* Make the textarea taller */
+    padding: 10px;
+    margin-top: 20px; /* Space between the green box and the textarea */
+    border: 2px solid #ccc;
+    border-radius: 10px; /* Add rounded corners to make it look like a box */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px; /* Increase font size for better readability */
+    resize: none; /* Prevent resizing of the textarea */
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px; /* Adjust the height as needed */
+    width: 100px; /* Adjust the width as needed */
+    padding: 0; /* Remove any default padding */
+    border: 2px solid #ccc; /* Optional: style the border */
+    background-color: white; /* Optional: style the background color */
+    cursor: pointer; /* Optional: change the cursor on hover */
+    margin: 0 10px; /* Space between buttons */
+}
+
+.dragover {
+    border-color: #000; /* Change border color when dragging over */
+}
+
+.main-text {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    text-align: center;
+}

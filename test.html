@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Maps with Marker Navigation</title>
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+    #coordinates {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 5px;
+      background: #eee;
+      border: 1px solid #ccc;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div id="coordinates">Move your mouse around!</div>
+  <div id="map"></div>
+
+  <script>
+    let map;
+    let redMarkers = [];
+    let blueMarkers = [];
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+      });
+
+      const savedBlueMarkers = JSON.parse(localStorage.getItem('blueMarkers')) || [];
+      savedBlueMarkers.forEach(markerData => {
+        const position = new google.maps.LatLng(markerData.lat, markerData.lng);
+        addBlueMarker(position);
+      });
+
+      map.addListener('click', function(event) {
+        addRedMarker(event.latLng);
+      });
+
+      map.addListener('mousemove', function(event) {
+        updateCoordinates(event.latLng);
+      });
+    }
+
+    function addRedMarker(location) {
+      const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          fillColor: '#FF0000',
+          fillOpacity: 1,
+          strokeWeight: 0,
+          scale: 10,
+        },
+      });
+
+      marker.addListener('click', function() {
+        window.location.href = 'index.html';
+        addBlueMarker(location);
+        saveBlueMarkers();
+      });
+
+      redMarkers.push(marker);
+    }
+
+    function addBlueMarker(location) {
+      const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          fillColor: '#0000FF',
+          fillOpacity: 1,
+          strokeWeight: 0,
+          scale: 10,
+        },
+      });
+
+      marker.addListener('click', function() {
+        window.location.href = 'p2.html';
+      });
+
+      blueMarkers.push(marker);
+    }
+
+    function updateCoordinates(latLng) {
+      const coordinates = document.getElementById('coordinates');
+      coordinates.textContent = `Lat: ${latLng.lat().toFixed(6)}, Lng: ${latLng.lng().toFixed(6)}`;
+    }
+
+    function saveBlueMarkers() {
+      const markerPositions = blueMarkers.map(marker => {
+        const pos = marker.getPosition();
+        return { lat: pos.lat(), lng: pos.lng() };
+      });
+      localStorage.setItem('blueMarkers', JSON.stringify(markerPositions));
+    }
+
+    function clearMarkers() {
+      redMarkers.forEach(marker => marker.setMap(null));
+      blueMarkers.forEach(marker => marker.setMap(null));
+      redMarkers = [];
+      blueMarkers = [];
+      localStorage.removeItem('blueMarkers');
+    }
+
+    const clearButton = document.createElement('button');
+    clearButton.textContent = 'Clear Markers';
+    clearButton.style.position = 'fixed';
+    clearButton.style.top = '50px';
+    clearButton.style.left = '10px';
+    clearButton.style.zIndex = '1000';
+    clearButton.onclick = clearMarkers;
+    document.body.appendChild(clearButton);
+    localStorage.clear()
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv1UeZ3iJOrqewg8TszWXkyPG7gRbRW-U&callback=initMap"></script>
+</body>
+</html>
